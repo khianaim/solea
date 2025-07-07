@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'SackersGothic';
+  src: url('/fonts/sackersgothics.otf') format('opentype');
+  font-weight: light;
+  font-style: normal;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  background:  #e5f0ff;
+
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  margin: 0;
+}
+
+.outline-text {
+  -webkit-text-stroke: 1px white;
+}
+
+/* Hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+
+
+/*New In Marquee*/
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+/*Loader Button*/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.animate-fade-in-delay {
+  animation: fadeIn 1s ease-out forwards;
+  animation-delay: 0.8s;
+}
