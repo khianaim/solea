@@ -1,26 +1,7 @@
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
+import { useRef } from "react";
 
 export const WelcomeOverlay = ({ onFinish }) => {
   const overlayRef = useRef();
-  const contentRef = useRef();
-
-  useEffect(() => {
-    // Set initial hidden state
-    gsap.set(contentRef.current.children, {
-      opacity: 0,
-      y: 24,
-    });
-
-    // Animate all children together, no stagger
-    gsap.to(contentRef.current.children, {
-      y: 0,
-      opacity: 1,
-      duration: 0.6,
-      ease: "power2.out",
-      delay: 0.2,
-    });
-  }, []);
 
   const handleClick = () => {
     const tl = gsap.timeline({ onComplete: onFinish });
@@ -59,10 +40,7 @@ export const WelcomeOverlay = ({ onFinish }) => {
         ref={overlayRef}
         className="fixed inset-0 z-50 flex flex-col items-center justify-center text-center px-6 backdrop-blur-xl bg-[#e5f0ff]/70 text-black"
       >
-        <div
-          ref={contentRef}
-          className="flex flex-col items-center gap-4"
-        >
+        <div className="flex flex-col items-center gap-4">
           <h1 className="text-2xl sm:text-5xl font-semibold font-sackers tracking-wide">
             S❋léa's New Arrivals
           </h1>
