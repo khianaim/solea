@@ -1,7 +1,5 @@
 import { atom, useAtom } from "jotai";
 import { useEffect, useState } from "react";
-import { CiUser, CiShoppingCart, CiVolumeHigh, CiVolumeMute } from "react-icons/ci";
-import { Link } from "react-router-dom";
 
 // ------------------ DATA ------------------ //
 const pictures = [
@@ -104,61 +102,77 @@ export const UI = () => {
 
   const [showTooltip, setShowTooltip] = useState(true);
 
-useEffect(() => {
-  const timer = setTimeout(() => {
-    setShowTooltip(false);
-  }, 5000); // show for 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowTooltip(false);
+    }, 5000); // show for 5 seconds
 
-  return () => clearTimeout(timer);
-}, []);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
-<main className="pointer-events-none select-none z-10 fixed inset-0 flex flex-col justify-between w-full h-full">
-  {/* Top Navigation Bar */}
-  <div className="flex flex-row items-center justify-between flex-nowrap w-full px-2 md:px-10 py-3 gap-4 pointer-events-auto text-[#000000]">
+      <main className="pointer-events-none select-none z-10 fixed inset-0 flex flex-col justify-between w-full h-full">
 
-    {/* Left: Nav Links */}
-    <div className="flex items-center gap-6 text-xs font-sackers font-semibold flex-1">
-      <div className="cursor-pointer opacity-90 hover:opacity-100 uppercase transition">explore</div>
-      <div className="cursor-pointer opacity-90 hover:opacity-100 uppercase transition">collections</div>
-      <div className="cursor-pointer opacity-90 hover:opacity-100 uppercase transition">about</div>
-    </div>
-
-   {/* Center: Brand Symbol with passive tooltip */}
-<div className="relative flex-1 text-center">
-  <div className="text-4xl tracking-widest select-none font-['Times_New_Roman',serif] font-medium">
-    ❋
-  </div>
-</div>
-
-    {/* Right: Icons */}
-    <div className="flex items-center justify-end gap-4 font-sackers font-semibold tracking-wide uppercase flex-1">
-      <div className="text-xs tracking-normal opacity-90 hover:opacity-100 cursor-pointer w-[90px] text-left">
-        <p onClick={toggleMute}>{muted ? "[vol : off]" : "[vol : on]"}</p>
-      </div>
-    </div>
-
-  </div>
-</main>
-
-
-    <div className="fixed inset-0 flex items-center -rotate-2 select-none overflow-hidden z-0">
-  <div className="w-full relative">
-    <div className="flex w-max gap-8 animate-scroll whitespace-nowrap px-8">
-      {Array(12).fill("NEW IN -").map((text, i) => (
-        <h2
-          key={i}
-          className="shrink-0 text-[#000000] text-8xl font-thin font-sackers"
+        {/* Top Navigation Bar */}
+        <div className="
+          flex flex-row items-center justify-between flex-nowrap w-full px-2 md:px-10 py-3 gap-4 pointer-events-auto text-[#000000]
+          "
         >
-          {text}
-        </h2>
-      ))}
-    </div>
-  </div>
-</div>
 
+          {/* Left: Nav Links */}
+          <div className="
+            flex items-center gap-6 text-xs font-sackers font-semibold flex-1
+            justify-center md:justify-start
+          ">
+            <div className="cursor-pointer opacity-90 hover:opacity-100 uppercase transition">explore</div>
+            <div className="cursor-pointer opacity-90 hover:opacity-100 uppercase transition">collections</div>
+            <div className="cursor-pointer opacity-90 hover:opacity-100 uppercase transition">about</div>
+          </div>
 
+          {/* Center: Brand Symbol with passive tooltip */}
+          <div className="relative flex-1 text-center hidden md:block">
+            <div className="text-4xl tracking-widest select-none font-['Times_New_Roman',serif] font-medium">
+              ❋
+            </div>
+          </div>
+
+          {/* Right: Icons */}
+          {/* Hide volume icon on top right on mobile */}
+          <div className="hidden md:flex items-center justify-end gap-4 font-sackers font-semibold tracking-wide uppercase flex-1">
+            <div className="text-xs tracking-normal opacity-90 hover:opacity-100 cursor-pointer w-[90px] text-left">
+              <p onClick={toggleMute}>{muted ? "[vol : off]" : "[vol : on]"}</p>
+            </div>
+          </div>
+
+        </div>
+      </main>
+
+      {/* Volume toggle bottom right on mobile */}
+      <div className="fixed bottom-4 right-4 md:hidden z-20 pointer-events-auto">
+        <p 
+          onClick={toggleMute} 
+          className="text-xs font-sackers font-semibold uppercase tracking-wide cursor-pointer opacity-90 hover:opacity-100 select-none"
+        >
+          {muted ? "[vol : off]" : "[vol : on]"}
+        </p>
+      </div>
+
+      {/* Scrolling text background */}
+      <div className="fixed inset-0 flex items-center -rotate-2 select-none overflow-hidden z-0">
+        <div className="w-full relative">
+          <div className="flex w-max gap-8 animate-scroll whitespace-nowrap px-8">
+            {Array(12).fill("NEW IN -").map((text, i) => (
+              <h2
+                key={i}
+                className="shrink-0 text-[#000000] text-8xl font-thin font-sackers"
+              >
+                {text}
+              </h2>
+            ))}
+          </div>
+        </div>
+      </div>
     </>
   );
 };
