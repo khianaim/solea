@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import gsap from "gsap";
 
 export const WelcomeOverlay = ({ onFinish }) => {
   const overlayRef = useRef();
@@ -6,25 +7,40 @@ export const WelcomeOverlay = ({ onFinish }) => {
   const handleClick = () => {
     const tl = gsap.timeline({ onComplete: onFinish });
 
-    tl.set([".split-panel-left", ".split-panel-right"], { x: 0, zIndex: 100 });
+    tl.set([".split-panel-left", ".split-panel-right"], {
+      x: 0,
+      zIndex: 100,
+    });
 
-    tl.to(".split-panel-left", {
-      x: "-100%",
-      duration: 1.2,
-      ease: "power4.inOut",
-    }, 0);
+    tl.to(
+      ".split-panel-left",
+      {
+        x: "-100%",
+        duration: 1.2,
+        ease: "power4.inOut",
+      },
+      0
+    );
 
-    tl.to(".split-panel-right", {
-      x: "100%",
-      duration: 1.2,
-      ease: "power4.inOut",
-    }, 0);
+    tl.to(
+      ".split-panel-right",
+      {
+        x: "100%",
+        duration: 1.2,
+        ease: "power4.inOut",
+      },
+      0
+    );
 
-    tl.to(overlayRef.current, {
-      opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
-    }, 0.6);
+    tl.to(
+      overlayRef.current,
+      {
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+      },
+      0.6
+    );
   };
 
   return (
@@ -46,7 +62,8 @@ export const WelcomeOverlay = ({ onFinish }) => {
           </h1>
 
           <p className="text-sm sm:text-base text-[#555] max-w-sm leading-relaxed">
-            See what’s new in our curated lookbook — eyewear that turns heads.<br />
+            See what’s new in our curated lookbook — eyewear that turns heads.
+            <br />
             Use your mouse or arrow keys to flip through the styles.
           </p>
 
@@ -61,3 +78,4 @@ export const WelcomeOverlay = ({ onFinish }) => {
     </>
   );
 };
+
