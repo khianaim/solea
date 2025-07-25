@@ -6,18 +6,18 @@ export const WelcomeOverlay = ({ onFinish }) => {
   const contentRef = useRef();
 
   useEffect(() => {
-    // Ensure initial hidden state is set immediately
+    // Set initial hidden state
     gsap.set(contentRef.current.children, {
       opacity: 0,
       y: 24,
     });
 
+    // Animate all children together, no stagger
     gsap.to(contentRef.current.children, {
       y: 0,
       opacity: 1,
-      duration: 0.8,
+      duration: 0.6,
       ease: "power2.out",
-      stagger: 0.1,
       delay: 0.2,
     });
   }, []);
